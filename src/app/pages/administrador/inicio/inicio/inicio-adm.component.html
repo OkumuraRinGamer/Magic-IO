@@ -1,0 +1,32 @@
+<div class="text-center">
+  <p class="mt-3 text-white">O que deseja visualizar?</p>
+  <div class="dropdown">
+    <button
+      class="btn btn-primary dropdown-toggle"
+      type="button"
+      id="dropdownMenuButton"
+      data-toggle="dropdown"
+      aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Camisa
+    </button>
+    <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuButton">
+      <a
+        class="dropdown-item dropdown-options text-white"
+        role="button"
+        [routerLink]="['/administrador/camisasMasculinas']"
+        >Masculinas</a
+      >
+      <a
+        class="dropdown-item dropdown-options text-white"
+        role="button"
+        [routerLink]="['/administrador/camisasFemininas']"
+        >Femininas</a
+      >
+    </div>
+  </div>
+  <p class="mt-3">
+    Voltar para a Loja? <a [routerLink]="['/']">Clique aqui</a>
+  </p>
+</div>

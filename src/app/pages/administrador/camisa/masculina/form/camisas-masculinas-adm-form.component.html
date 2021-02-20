@@ -1,0 +1,61 @@
+<form [formGroup]="camisasMasculinasForm">
+  <div class="form-group">
+    <label label class="fontSize" for="marca">Marca </label>
+    <input
+      input
+      type="text"
+      class="form-control"
+      id="marca"
+      placeholder="Ex: Nike"
+      formControlName="marca"
+    />
+  </div>
+  <!-- Cor Input -->
+  <div class="form-group">
+    <label label class="fontSize" for="cor">Cor </label>
+    <input
+      input
+      type="text"
+      class="form-control"
+      id="cor"
+      placeholder="Ex: Azul"
+      formControlName="cor"
+    />
+  </div>
+  <!-- Tamanho Select -->
+  <div class="form-group">
+    <label label class="fontSize" for="tamanho">Tamanho </label>
+    <select input class="form-control" id="tamanho" formControlName="tamanho">
+      <option>P</option>
+      <option>M</option>
+      <option>G</option>
+    </select>
+  </div>
+  <!-- Preço Input -->
+  <div class="form-group">
+    <label label class="fontSize" for="preco">Preço </label>
+    <input
+      input
+      type="text"
+      class="form-control"
+      id="preco"
+      placeholder="Ex: R$:11,25"
+      formControlName="preco"
+    />
+  </div>
+  <!-- Adicionar Button -->
+  <a
+    (click)="onSave(camisasMasculinasForm.value)"
+    class="btn btn-primary botoes text-white"
+    type="submit"
+    role="button"
+    ><i class="fas fa-plus-circle"></i> Adicionar</a
+  >
+  <!-- Cancelar Button -->
+  <a
+    (click)="onCancel()"
+    class="btn btn-secondary botoes text-white"
+    role="button"
+    ><i class="fas fa-times-circle"></i> Calcelar</a
+  >
+</form>

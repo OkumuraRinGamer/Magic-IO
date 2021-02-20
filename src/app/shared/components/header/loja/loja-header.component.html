@@ -1,0 +1,41 @@
+<nav class="navbar justify-content-center">
+  <span class="navbar-brand mb-0 h1"
+    ><i class="fas fa-hat-wizard"></i> Magic-IO
+  </span>
+</nav>
+
+<ul class="nav mg-top bg-dark justify-content-center">
+  <li class="nav-item">
+    <a class="nav-link active text-white" [routerLink]="['/']"
+      ><i class="fas fa-home"></i> Inicio</a
+    >
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-white">></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active">
+      <div class="dropdown text-white">
+        <a
+          class="dropdown-toggle text-decoration-none text-reset"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+          role="button"
+        >
+          <i class="fas fa-tshirt"></i> Camisas
+        </a>
+
+        <div class="dropdown-menu bg-dark" aria-labelledby="dropdownMenuLink">
+          <a class="dropdown-item text-white dropdown-options" role="button"
+            >Masculinas</a
+          >
+          <a class="dropdown-item text-white dropdown-options" role="button"
+            >Femininas</a
+          >
+        </div>
+      </div>
+    </a>
+  </li>
+</ul>
