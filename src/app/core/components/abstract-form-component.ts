@@ -15,12 +15,14 @@ export abstract class AbstractFormComponent<T> implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.onInit();
     this.action = this.route.snapshot.url[0].path;
-
     if (this.action == "alterar") {
       this.setValue();
     }
   }
+
+  onInit() {}
 
   setValue() {
     const id = this.route.snapshot.url[1].path;

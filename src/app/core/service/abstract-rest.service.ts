@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable } from "rxjs";
 
 export abstract class AbstractRestService<T> {
@@ -6,6 +6,12 @@ export abstract class AbstractRestService<T> {
   protected url: string;
 
   constructor(protected http: HttpClient) {}
+
+  httpOptions = {
+    headers: new HttpHeaders({
+      "Content-Type": "application/json",
+    }),
+  };
 
   /**
    * MÉTODO PARA BUSCAR TODOS
@@ -31,9 +37,9 @@ export abstract class AbstractRestService<T> {
 
   save(data: any): Observable<T> {
     if (data.id) {
-      return this.http.put<T>(`${this.url}`, JSON.stringify(data));
+      return this.http.put<T>(`${this.url}`, data);
     } else {
-      return this.http.post<T>(`${this.url}`, JSON.stringify(data));
+      return this.http.post<T>(`${this.url}`, data);
     }
   }
 

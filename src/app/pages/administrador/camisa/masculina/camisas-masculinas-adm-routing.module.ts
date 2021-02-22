@@ -12,6 +12,10 @@ const routes: Routes = [
     path: "cadastrar",
     component: CamisasMasculinasAdmFormComponent,
   },
+  {
+    path: "alterar/:id",
+    component: CamisasMasculinasAdmFormComponent,
+  },
 ];
 
 @NgModule({

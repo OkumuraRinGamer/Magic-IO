@@ -10,15 +10,13 @@ import { CamisasMasculinasService } from "src/app/shared/services/camisas-mascul
   templateUrl: "./camisas-masculinas-adm-form.component.html",
   styleUrls: ["./camisas-masculinas-adm-form.component.sass"],
 })
-export class CamisasMasculinasAdmFormComponent
-  extends AbstractFormComponent<Camisa>
-  implements OnInit {
+export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Camisa> {
   camisasMasculinasForm: FormGroup;
 
-  ngOnInit() {
+  onInit() {
     this.createForm();
     this.resultadoForm = this.camisasMasculinasForm;
-    this.navRoute = "/administrador/camsiasMasculinas";
+    this.navRoute = "/administrador/camisasMasculinas";
   }
 
   constructor(

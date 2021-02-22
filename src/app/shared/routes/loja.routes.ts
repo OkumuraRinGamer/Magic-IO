@@ -8,4 +8,18 @@ export const LOJA_ROUTES: Routes = [
         (m) => m.InicioLojaModule
       ),
   },
+  {
+    path: "camisasMasculinas",
+    loadChildren: () =>
+      import(
+        "../../pages/loja/camisa/masculina/camisas-masculinas-loja.module"
+      ).then((m) => m.CamisasMasculinasLojaModule),
+  },
+  {
+    path: "camisasFemininas",
+    loadChildren: () =>
+      import(
+        "../../pages/loja/camisa/feminina/camisas-femininas-loja.module"
+      ).then((m) => m.CamisasFemininasLojaModule),
+  },
 ];

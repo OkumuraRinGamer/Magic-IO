@@ -1,0 +1,30 @@
+<div class="row mx-auto">
+  <div class="col-sm d-flex" *ngFor="let camisa of resultados">
+    <div
+      class="card bg-dark my-3 mx-auto"
+      style="
+        width: 18rem;
+        background-image: url('../../../../../../assets/img/gallery/DnDLogo.png');
+        background-repeat: no-repeat;
+        background-position: bottom;
+      "
+    >
+      <img
+        src="../../../../../../assets/img/models/camisaMasculinaModel.jpg"
+        class="card-img-top"
+        alt="camisa"
+      />
+      <div class="card-body">
+        <h5 class="card-title">
+          {{ camisa.marca }}
+        </h5>
+        <h5 class="card-title">{{ camisa.preco }}</h5>
+        <p class="card-text">{{ camisa.cor }} <br /></p>
+        <div class="tamanho-camisa text-dark grey8-light">
+          <p>{{ camisa.tamanho }}</p>
+        </div>
+        <a class="btn btn-primary">Comprar</a>
+      </div>
+    </div>
+  </div>
+</div>
