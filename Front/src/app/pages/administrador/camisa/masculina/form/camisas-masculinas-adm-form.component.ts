@@ -1,7 +1,8 @@
-import { Component, OnInit } from "@angular/core";
+import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AbstractFormComponent } from "src/app/core/components/abstract-form-component";
+import { AbstractListComponent } from "src/app/core/components/abstract-list-component";
 import Camisa from "src/app/shared/Data/Camisa";
 import { CamisasMasculinasService } from "src/app/shared/services/camisas-masculinas.service";
 

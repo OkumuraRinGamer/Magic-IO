@@ -35,10 +35,21 @@ export abstract class AbstractRestService<T> {
    * @param data
    */
 
-  save(data: any): Observable<T> {
+  async save(data: any, ImgFile: FormData): Promise<Observable<T>> {
     if (data.id) {
       return this.http.put<T>(`${this.url}`, data);
     } else {
+      let urlImg = new Promise<any>((resolve, reject) => {
+        this.http
+          .post<any>(`http://localhost:8080/imagem`, ImgFile, {
+            observe: "body",
+            responseType: "text" as "json",
+          })
+          .subscribe((imgFile) => {
+            resolve(encodeURI(imgFile));
+          });
+      });
+      data.urlImage = await urlImg;
       return this.http.post<T>(`${this.url}`, data);
     }
   }

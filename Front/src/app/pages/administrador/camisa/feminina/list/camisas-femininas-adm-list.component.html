@@ -11,6 +11,7 @@
 <table class="table table-sm mt-3 text-white text-center">
   <thead>
     <tr>
+      <th scope="col">Imagem</th>
       <th scope="col">Marca</th>
       <th scope="col">Cor</th>
       <th scope="col">Tamanho</th>
@@ -20,6 +21,22 @@
   </thead>
   <tbody>
     <tr *ngFor="let camisa of resultados">
+      <td>
+        <img
+          class="mr-3"
+          src="{{ camisa.urlImage }}"
+          alt="camisa"
+          width="40px"
+          height="40px"
+        />
+        <a
+          type="button"
+          class="btn btn-primary btn-sm"
+          href="{{ camisa.urlImage }}"
+          target="_blank"
+          >Vizualizar</a
+        >
+      </td>
       <td>{{ camisa.marca }}</td>
       <td>{{ camisa.cor }}</td>
       <td>{{ camisa.tamanho }}</td>

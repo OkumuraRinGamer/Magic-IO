@@ -1,4 +1,4 @@
-package com.magicio.resources;
+package com.magicio.core.resources;
 
 import com.magicio.core.Controller.ResponseAbstractController;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,13 +12,13 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/imagem")
-public class ImagemResource extends ResponseAbstractController{
+public class ImagemResource extends ResponseAbstractController {
 
     @Autowired
     private Imagem imagem;
 
     @PostMapping
-    public ResponseEntity<?> upload(@RequestParam MultipartFile file){
+    public ResponseEntity<?> upload(@RequestParam MultipartFile file) {
 
         return new ResponseEntity<>(imagem.salvarImagem(file), HttpStatus.OK);
 

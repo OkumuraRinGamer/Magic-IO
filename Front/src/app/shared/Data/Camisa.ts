@@ -4,4 +4,5 @@ export default class Camisa {
   cor: string;
   tamanho: string;
   preco: string;
+  urlImage: string;
 }

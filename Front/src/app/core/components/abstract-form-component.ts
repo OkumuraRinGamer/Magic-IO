@@ -1,6 +1,7 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { OnInit } from "@angular/core";
+import { observable } from "rxjs";
 
 export abstract class AbstractFormComponent<T> implements OnInit {
   protected resultadoForm: FormGroup;
@@ -32,6 +33,10 @@ export abstract class AbstractFormComponent<T> implements OnInit {
   }
 
   onSave(value: T): void {
+    let ImgFile = new FormData();
+    const Imagem = (document.getElementById("Imagem") as HTMLInputElement)
+      .files[0];
+    ImgFile.append("file", Imagem);
     Object.keys(this.resultadoForm.controls).forEach((field) =>
       this.resultadoForm.get(field).markAllAsTouched()
     );
@@ -41,8 +46,12 @@ export abstract class AbstractFormComponent<T> implements OnInit {
     }
 
     this.service
-      .save(value)
-      .subscribe((response) => this.router.navigate([this.navRoute]));
+      .save(value, ImgFile)
+      .then((observable) =>
+        observable.subscribe((response) =>
+          this.router.navigate([this.navRoute])
+        )
+      );
   }
 
   onCancel(): void {

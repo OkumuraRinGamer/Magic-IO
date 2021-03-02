@@ -1,4 +1,4 @@
-package com.magicio.resources;
+package com.magicio.core.resources;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -17,24 +17,22 @@ public class Imagem {
     @Value("${camiseta.imagem.diretorio}")
     private String diretorioImagem;
 
-    public String salvarImagem(MultipartFile imagem){
+    public String salvarImagem(MultipartFile imagem) {
         return this.salvar(this.diretorioImagem, imagem);
     }
 
-    private String salvar(String diretorio, MultipartFile imagem){
-        Date date =  new Date();
+    private String salvar(String diretorio, MultipartFile imagem) {
+        Date date = new Date();
         Path diretorioPath = Paths.get(this.raiz, diretorio);
-        Path arquivoPath = diretorioPath.resolve(date.getTime()+"-"+imagem.getOriginalFilename());
+        Path arquivoPath = diretorioPath.resolve(date.getTime() + "-" + imagem.getOriginalFilename());
 
         try {
             Files.createDirectories(diretorioPath);
             imagem.transferTo(arquivoPath.toFile());
-            return "http://localhost:8080/images/"+date.getTime()+"-"+imagem.getOriginalFilename();
+            return "http://localhost:8080/images/" + date.getTime() + "-" + imagem.getOriginalFilename();
         } catch (Exception e) {
             return null;
         }
     }
 
-
 }
-
