@@ -1,8 +1,12 @@
 <h1 class="ml-3 mt-3 mb-3">Camisas Femininas</h1>
 <form [formGroup]="camisasFemininasForm" class="mx-3">
   <div class="form-group">
-    <label label>Imagem</label>
-    <input input type="file" id="Imagem" />
+    <p label class="mb-2">Imagem</p>
+    <button type="button" class="btn btn-primary" (click)="imgUploadClick()">
+      Carregar
+    </button>
+    <span class="ml-2">{{ this.nomeImg }}</span>
+    <input input type="file" id="Imagem" hidden />
   </div>
   <!-- Marca Input -->
   <div class="form-group">

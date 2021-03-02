@@ -3,7 +3,11 @@
   <!-- Imagem Upload -->
   <div class="form-group">
     <p label class="mb-2">Imagem</p>
-    <input input type="file" class="img-upload" id="Imagem" />
+    <button type="button" class="btn btn-primary" (click)="imgUploadClick()">
+      Carregar
+    </button>
+    <span class="ml-2">{{ this.nomeImg }}</span>
+    <input input type="file" id="Imagem" hidden />
   </div>
   <!-- Marca Input -->
   <div class="form-group">

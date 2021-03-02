@@ -14,6 +14,8 @@ import { CamisasMasculinasService } from "src/app/shared/services/camisas-mascul
 export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Camisa> {
   camisasMasculinasForm: FormGroup;
 
+  nomeImg: string = "";
+
   onInit() {
     this.createForm();
     this.resultadoForm = this.camisasMasculinasForm;
@@ -27,6 +29,15 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
     protected builder: FormBuilder
   ) {
     super(service, router, route, builder);
+  }
+
+  imgUploadClick() {
+    document.getElementById("Imagem").click();
+    document
+      .getElementById("Imagem")
+      .addEventListener("change", (imgNome: any) => {
+        this.nomeImg = imgNome.target.files[0].name;
+      });
   }
 
   createForm(): void {
