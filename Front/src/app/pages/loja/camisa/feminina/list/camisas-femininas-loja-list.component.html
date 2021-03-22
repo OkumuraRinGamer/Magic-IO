@@ -25,7 +25,12 @@
         <div class="tamanho-camisa text-dark grey8-light">
           <p>{{ camisa.tamanho }}</p>
         </div>
-        <a class="btn btn-primary"><i class="fas fa-cart-plus"></i> Carrinho</a>
+        <a
+          class="btn btn-primary"
+          id="{{ camisa.id }}"
+          (click)="btnCarrinhoCor(camisa.id)"
+          ><i class="fas fa-cart-plus"></i> Carrinho</a
+        >
       </div>
     </div>
   </div>

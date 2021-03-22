@@ -1,0 +1,76 @@
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="staticBackdrop"
+  data-backdrop="static"
+  data-keyboard="false"
+  tabindex="-1"
+  aria-labelledby="staticBackdropLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content grey8-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">
+          <i class="fas fa-user"></i> Entrar
+        </h5>
+        <button
+          type="button"
+          class="close text-white"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1"
+              ><i class="fas fa-envelope"></i> Email</label
+            >
+            <input
+              type="email"
+              class="form-control"
+              id="exampleInputEmail1"
+              aria-describedby="emailHelp"
+              placeholder="examplo@email.com"
+            />
+            <small id="emailHelp" class="form-text text-muted"
+              >Nunca compartilharemos seu e-mail.</small
+            >
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1"
+              ><i class="fas fa-key"></i> Senha</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="exampleInputPassword1"
+              placeholder="senhaforte123"
+            />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              <i class="fas fa-window-close"></i> Cancelar
+            </button>
+            <button
+              type="submit"
+              type="button"
+              class="btn btn-primary"
+              data-dismiss="modal"
+              [routerLink]="['/administrador']"
+            >
+              <i class="fas fa-user"></i> Entrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

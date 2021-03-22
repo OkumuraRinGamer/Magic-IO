@@ -19,6 +19,16 @@ export class CamisasFemininasLojaListComponent extends AbstractListComponent<Cam
     super(service, route);
   }
 
+  btnCarrinhoCor(id: number) {
+    if (document.getElementById("" + id).style.backgroundColor == "green") {
+      document.getElementById("" + id).style.backgroundColor = "#0074d9";
+      document.getElementById("" + id).style.borderColor = "#0074d9";
+    } else {
+      document.getElementById("" + id).style.backgroundColor = "green";
+      document.getElementById("" + id).style.borderColor = "green";
+    }
+  }
+
   onListar() {
     this.service
       .findAll()

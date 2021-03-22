@@ -13,13 +13,20 @@ import { CamisasMasculinasService } from "src/app/shared/services/camisas-mascul
 })
 export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Camisa> {
   camisasMasculinasForm: FormGroup;
-
-  nomeImg: string = "";
+  nomeImg: string = "Selecione uma imagem!";
+  imagePath;
+  imgURL: any = "../../../../../../assets/img/gallery/preview.jpg";
+  message: string;
+  addBtnLabel: string = "Adicionar";
+  valid: boolean;
 
   onInit() {
     this.createForm();
     this.resultadoForm = this.camisasMasculinasForm;
     this.navRoute = "/administrador/camisasMasculinas";
+    if (this.route.snapshot.url[0].path == "alterar") {
+      this.addBtnLabel = "Alterar";
+    }
   }
 
   constructor(
@@ -31,12 +38,34 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
     super(service, router, route, builder);
   }
 
+  preview(files) {
+    if (files.length === 0) return;
+
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Apenas imagens são suportadas!";
+      this.valid = false;
+      return;
+    }
+
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    };
+  }
+
   imgUploadClick() {
     document.getElementById("Imagem").click();
     document
       .getElementById("Imagem")
       .addEventListener("change", (imgNome: any) => {
         this.nomeImg = imgNome.target.files[0].name;
+        if (this.nomeImg.length > 100) {
+          this.message = "Nome muito comprido, por favor altere!";
+          this.valid = false;
+        }
       });
   }
 

@@ -42,9 +42,11 @@ export abstract class AbstractFormComponent<T> implements OnInit {
     }
 
     let ImgFile = new FormData();
+
     const Imagem = (document.getElementById("Imagem") as HTMLInputElement)
       .files[0];
     ImgFile.append("file", Imagem);
+
     Object.keys(this.resultadoForm.controls).forEach((field) =>
       this.resultadoForm.get(field).markAllAsTouched()
     );

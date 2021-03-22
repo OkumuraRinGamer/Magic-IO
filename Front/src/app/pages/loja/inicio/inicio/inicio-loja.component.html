@@ -3,6 +3,16 @@
   <h2>Bem-Vindo!</h2>
   ><img src="../../../../../assets/img/gallery/inicio.png" alt="DnD" />
   <p class="mt-3">
-    É um administrador? <a [routerLink]="['/administrador']">Clique aqui</a>
+    É um administrador?
+    <!-- Button trigger modal -->
+    <button
+      type="button"
+      class="btn btn-link"
+      data-toggle="modal"
+      data-target="#staticBackdrop"
+    >
+      <i class="fas fa-user"></i> Entrar
+    </button>
+    <app-administrador-modal-login></app-administrador-modal-login>
   </p>
 </div>
