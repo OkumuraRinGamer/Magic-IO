@@ -73,4 +73,12 @@ export abstract class AbstractRestService<T> {
   deteleById(id: number): Observable<any> {
     return this.http.delete(`${this.url}/${id}`);
   }
+
+  deleteImg(nomeImg) {
+    this.http
+      .delete(`http://localhost:8080/imagem/${nomeImg}`)
+      .subscribe((res) => {
+        console.log(res);
+      });
+  }
 }

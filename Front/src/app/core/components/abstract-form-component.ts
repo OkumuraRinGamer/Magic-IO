@@ -1,12 +1,12 @@
 import { ActivatedRoute, Router } from "@angular/router";
 import { FormBuilder, FormGroup } from "@angular/forms";
 import { OnInit } from "@angular/core";
-import { observable } from "rxjs";
 
 export abstract class AbstractFormComponent<T> implements OnInit {
   protected resultadoForm: FormGroup;
   protected action: string;
   protected navRoute: string;
+  protected imgValid: boolean = true;
 
   constructor(
     protected service: any,
@@ -37,19 +37,18 @@ export abstract class AbstractFormComponent<T> implements OnInit {
       this.resultadoForm.get(field).markAllAsTouched()
     );
 
-    if (this.resultadoForm.invalid) {
-      return;
-    }
-
     let ImgFile = new FormData();
-
     const Imagem = (document.getElementById("Imagem") as HTMLInputElement)
       .files[0];
+
     ImgFile.append("file", Imagem);
 
-    Object.keys(this.resultadoForm.controls).forEach((field) =>
-      this.resultadoForm.get(field).markAllAsTouched()
-    );
+    if (this.resultadoForm.invalid || !Imagem) {
+      if (!Imagem) {
+        this.imgValid = false;
+      }
+      return;
+    }
 
     this.service
       .save(value, ImgFile)

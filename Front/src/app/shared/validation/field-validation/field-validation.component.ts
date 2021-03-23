@@ -15,7 +15,7 @@ import { FormControlName } from "@angular/forms";
 export class FieldValidationComponent implements OnInit, AfterViewInit {
   @Input() required = false;
 
-  //@ContentChild(HTMLElement, { static: true }) label: HTMLElement;
+  @ContentChild(HTMLElement, { static: false }) label: HTMLElement;
   @ContentChild(FormControlName, { static: true }) input: FormControlName;
 
   constructor() {}

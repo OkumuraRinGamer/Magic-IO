@@ -1,15 +1,25 @@
 <h1 class="ml-3 mt-3 mb-3">Camisas Masculinas</h1>
 <form [formGroup]="camisasMasculinasForm" class="mx-3">
   <!-- Imagem Upload -->
+  <input type="text" formControlName="urlImage" [(ngModel)]="nomeImg" hidden />
   <div class="form-group text-center">
-    <img [src]="imgURL" height="311" width="288" />
+    <img
+      src="http://localhost:8080/images/{{ this.nomeImg }}"
+      height="311"
+      width="288"
+      *ngIf="this.altPrev && this.nomeImg != 'Selecione uma imagem!'"
+    />
+    <img [src]="imgURL" height="311" width="288" *ngIf="this.savImg" />
     <br />
     <div class="mt-3">
       <button type="button" class="btn btn-primary" (click)="imgUploadClick()">
         Carregar
       </button>
-      <span class="ml-2" *ngIf="!message">{{ this.nomeImg }}</span>
+      <span class="ml-2" *ngIf="!message && imgValid">{{ this.nomeImg }}</span>
       <span class="ml-2" style="color: red" *ngIf="message">{{ message }}</span>
+      <span class="ml-2" style="color: red" *ngIf="!imgValid"
+        >É obrigatório o envio de imagem!</span
+      >
       <input
         #file
         type="file"
@@ -21,7 +31,6 @@
     </div>
   </div>
   <!-- Marca Input -->
-
   <div class="form-group">
     <app-field-validation-container>
       <label label class="fontSize" for="marca">Marca </label>

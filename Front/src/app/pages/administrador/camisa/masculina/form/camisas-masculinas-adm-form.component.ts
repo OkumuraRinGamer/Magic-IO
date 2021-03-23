@@ -2,7 +2,6 @@ import { Component } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { AbstractFormComponent } from "src/app/core/components/abstract-form-component";
-import { AbstractListComponent } from "src/app/core/components/abstract-list-component";
 import Camisa from "src/app/shared/Data/Camisa";
 import { CamisasMasculinasService } from "src/app/shared/services/camisas-masculinas.service";
 
@@ -18,7 +17,8 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
   imgURL: any = "../../../../../../assets/img/gallery/preview.jpg";
   message: string;
   addBtnLabel: string = "Adicionar";
-  valid: boolean;
+  altPrev: boolean = false;
+  savImg: boolean = true;
 
   onInit() {
     this.createForm();
@@ -26,6 +26,8 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
     this.navRoute = "/administrador/camisasMasculinas";
     if (this.route.snapshot.url[0].path == "alterar") {
       this.addBtnLabel = "Alterar";
+      this.altPrev = true;
+      this.savImg = false;
     }
   }
 
@@ -44,7 +46,6 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Apenas imagens são suportadas!";
-      this.valid = false;
       return;
     }
 
@@ -64,8 +65,9 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
         this.nomeImg = imgNome.target.files[0].name;
         if (this.nomeImg.length > 100) {
           this.message = "Nome muito comprido, por favor altere!";
-          this.valid = false;
         }
+        this.savImg = true;
+        this.altPrev = false;
       });
   }
 
@@ -76,6 +78,7 @@ export class CamisasMasculinasAdmFormComponent extends AbstractFormComponent<Cam
       cor: [null, [Validators.required, Validators.maxLength(120)]],
       tamanho: [null, Validators.required],
       preco: [null, [Validators.required, Validators.maxLength(120)]],
+      urlImage: [null],
     });
   }
 }

@@ -1,5 +1,6 @@
 package com.magicio.core.resources;
 
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -29,10 +30,20 @@ public class Imagem {
         try {
             Files.createDirectories(diretorioPath);
             imagem.transferTo(arquivoPath.toFile());
-            return "http://localhost:8080/images/" + date.getTime() + "-" + imagem.getOriginalFilename();
+            return date.getTime() + "-" + imagem.getOriginalFilename();
         } catch (Exception e) {
             return null;
         }
+    }
+
+    protected boolean deletar(String nomeImg) {
+        Path path = Paths.get(raiz + "/" + diretorioImagem + "/" + nomeImg);
+        try {
+            Files.deleteIfExists(path);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
 }

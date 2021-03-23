@@ -25,8 +25,10 @@ export class CamisasMasculinasAdmListComponent extends AbstractListComponent<Cam
       .subscribe((resultados) => (this.resultados = resultados));
   }
 
-  deleteById(id: number): void {
-    console.log(id);
-    this.service.deteleById(id).subscribe(() => this.onListar());
+  deleteById(camisa: Camisa): void {
+    this.service.deteleById(camisa.id).subscribe(() => {
+      this.service.deleteImg(camisa.urlImage);
+      this.onListar();
+    });
   }
 }

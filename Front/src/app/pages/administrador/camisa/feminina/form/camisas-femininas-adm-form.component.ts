@@ -17,7 +17,8 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
   imgURL: any = "../../../../../../assets/img/gallery/preview.jpg";
   message: string;
   addBtnLabel: string = "Adicionar";
-  valid: boolean;
+  altPrev: boolean = false;
+  savImg: boolean = true;
 
   onInit() {
     this.createForm();
@@ -25,8 +26,8 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
     this.navRoute = "administrador/camisasFemininas";
     if (this.route.snapshot.url[0].path == "alterar") {
       this.addBtnLabel = "Alterar";
-      this.message = "Nome muito comprido, por favor altere!";
-      this.valid = false;
+      this.altPrev = true;
+      this.savImg = false;
     }
   }
 
@@ -45,7 +46,6 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
     var mimeType = files[0].type;
     if (mimeType.match(/image\/*/) == null) {
       this.message = "Apenas imagens são suportadas!";
-      this.valid = false;
       return;
     }
 
@@ -65,8 +65,9 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
         this.nomeImg = imgNome.target.files[0].name;
         if (this.nomeImg.length > 100) {
           this.message = "Nome muito comprido, por favor altere!";
-          this.valid = false;
         }
+        this.savImg = true;
+        this.altPrev = false;
       });
   }
 
@@ -77,6 +78,7 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
       cor: [null, [Validators.required, Validators.maxLength(120)]],
       tamanho: [null, Validators.required],
       preco: [null, [Validators.required, Validators.maxLength(120)]],
+      urlImage: [null],
     });
   }
 }
