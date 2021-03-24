@@ -1,13 +1,18 @@
 <h1 class="ml-3 mt-3 mb-3">Camisas Femininas</h1>
 <form [formGroup]="camisasFemininasForm" class="mx-3">
   <!-- Imagem Upload -->
-  <input type="text" formControlName="urlImage" [(ngModel)]="nomeImg" hidden />
+  <input
+    type="text"
+    formControlName="urlImage"
+    [(ngModel)]="nomePastImg"
+    hidden
+  />
   <div class="form-group text-center">
     <img
-      src="http://localhost:8080/images/{{ this.nomeImg }}"
+      src="http://localhost:8080/images/{{ this.nomePastImg }}"
       height="311"
       width="288"
-      *ngIf="this.altPrev && this.nomeImg != 'Selecione uma imagem!'"
+      *ngIf="this.altPrev && this.nomePastImg != ''"
     />
     <img [src]="imgURL" height="311" width="288" *ngIf="this.savImg" />
     <br />
@@ -15,7 +20,10 @@
       <button type="button" class="btn btn-primary" (click)="imgUploadClick()">
         Carregar
       </button>
-      <span class="ml-2" *ngIf="!message && imgValid">{{ this.nomeImg }}</span>
+      <span class="ml-2" *ngIf="!message && imgValid && !nomePastImg">{{
+        this.nomeImg
+      }}</span>
+      <span class="ml-2" *ngIf="!message && imgValid">{{ nomePastImg }}</span>
       <span class="ml-2" style="color: red" *ngIf="message">{{ message }}</span>
       <span class="ml-2" style="color: red" *ngIf="!imgValid"
         >É obrigatório o envio de imagem!</span
@@ -75,7 +83,7 @@
       <label label class="fontSize" for="preco">Preço </label>
       <input
         input
-        type="text"
+        type="number"
         class="form-control"
         id="preco"
         placeholder="Ex: R$:11,25"

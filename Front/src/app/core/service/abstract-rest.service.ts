@@ -4,6 +4,8 @@ import { Observable } from "rxjs";
 export abstract class AbstractRestService<T> {
   // Endereço da API
   protected url: string;
+  protected imgSetted: boolean = false;
+  protected pastImgUrl: string;
 
   constructor(protected http: HttpClient) {}
 
@@ -12,6 +14,21 @@ export abstract class AbstractRestService<T> {
       "Content-Type": "application/json",
     }),
   };
+  /**
+   * VERIFICAR SE IMAGEM JÁ ESTÁ DISPONIVEL
+   * @param imgSetted
+   */
+  imgSettedVerify(setted: boolean) {
+    this.imgSetted = setted;
+  }
+
+  imgSettedValue() {
+    return this.imgSetted;
+  }
+
+  imgPastUrl(pastUrl: string) {
+    this.pastImgUrl = pastUrl;
+  }
 
   /**
    * MÉTODO PARA BUSCAR TODOS
@@ -37,17 +54,22 @@ export abstract class AbstractRestService<T> {
 
   async save(data: any, ImgFile: FormData): Promise<Observable<T>> {
     if (data.id) {
-      let urlImg = new Promise<any>((resolve, reject) => {
+      if (!this.imgSetted) {
         this.http
-          .post<any>(`http://localhost:8080/imagem`, ImgFile, {
-            observe: "body",
-            responseType: "text" as "json",
-          })
-          .subscribe((imgFile) => {
-            resolve(encodeURI(imgFile));
-          });
-      });
-      data.urlImage = await urlImg;
+          .delete(`http://localhost:8080/imagem/${this.pastImgUrl}`)
+          .subscribe((res) => {});
+        let urlImg = new Promise<any>((resolve, reject) => {
+          this.http
+            .post<any>(`http://localhost:8080/imagem`, ImgFile, {
+              observe: "body",
+              responseType: "text" as "json",
+            })
+            .subscribe((imgFile) => {
+              resolve(encodeURI(imgFile));
+            });
+        });
+        data.urlImage = await urlImg;
+      }
       return this.http.post<T>(`${this.url}`, data);
     } else {
       let urlImg = new Promise<any>((resolve, reject) => {
@@ -77,8 +99,6 @@ export abstract class AbstractRestService<T> {
   deleteImg(nomeImg) {
     this.http
       .delete(`http://localhost:8080/imagem/${nomeImg}`)
-      .subscribe((res) => {
-        console.log(res);
-      });
+      .subscribe((res) => {});
   }
 }

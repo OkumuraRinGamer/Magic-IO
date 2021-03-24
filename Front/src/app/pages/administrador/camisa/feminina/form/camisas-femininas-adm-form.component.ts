@@ -12,7 +12,6 @@ import { CamisasFemininasService } from "src/app/shared/services/camisas-feminin
 })
 export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Camisa> {
   camisasFemininasForm: FormGroup;
-  nomeImg: string = "Selecione uma imagem!";
   imagePath;
   imgURL: any = "../../../../../../assets/img/gallery/preview.jpg";
   message: string;
@@ -68,6 +67,7 @@ export class CamisasFemininasAdmFormComponent extends AbstractFormComponent<Cami
         }
         this.savImg = true;
         this.altPrev = false;
+        this.service.imgSettedVerify(false);
       });
   }
 

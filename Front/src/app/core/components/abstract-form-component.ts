@@ -7,6 +7,8 @@ export abstract class AbstractFormComponent<T> implements OnInit {
   protected action: string;
   protected navRoute: string;
   protected imgValid: boolean = true;
+  nomeImg: string = "Selecione uma imagem!";
+  nomePastImg: string;
 
   constructor(
     protected service: any,
@@ -20,6 +22,7 @@ export abstract class AbstractFormComponent<T> implements OnInit {
     this.action = this.route.snapshot.url[0].path;
     if (this.action == "alterar") {
       this.setValue();
+      this.service.imgSettedVerify(true);
     }
   }
 
@@ -43,7 +46,13 @@ export abstract class AbstractFormComponent<T> implements OnInit {
 
     ImgFile.append("file", Imagem);
 
-    if (this.resultadoForm.invalid || !Imagem) {
+    if (this.action == "alterar") {
+      this.service.imgPastUrl(this.nomePastImg);
+    }
+    if (
+      (this.resultadoForm.invalid || !Imagem) &&
+      !this.service.imgSettedValue()
+    ) {
       if (!Imagem) {
         this.imgValid = false;
       }
